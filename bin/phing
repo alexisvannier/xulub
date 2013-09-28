@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# rendre la configuration sur php dynamique
+BIN_PHP=`which php`
+if [[ "X$BIN_PHP" = "X" || ! -f $BIN_PHP ]]
+then
+ echo ""
+ echo "Le binaire PHP n'est pas défini dans votre PATH ($PATH)."
+ echo ""
+ exit;
+else
+ echo " - BIN_PHP : $BIN_PHP"
+fi
+
+# ajouté par François pour gérer le répertoire dynamiquement
+DIRECTORY=$(cd `dirname $0` && pwd)
+
+export PHP_COMMAND=$BIN_PHP
+export PEAR_HOME=$DIRECTORY/../library/vendor/pear.20100302/lib/php
+export PHP_PEAR_INSTALL_DIR=$PEAR_HOME
+export PHING_HOME=$PEAR_HOME
+export PHP_CLASSPATH=${PEAR_HOME}:${PEAR_HOME}/PHP
+export PATH=${PATH}:$DIRECTORY
+
+$BIN_PHP -d html_errors=off -d memory_limit=128M -d include_path=$PHP_CLASSPATH -qC $PEAR_HOME/phing.php -logger phing.listener.AnsiColorLogger "$@"

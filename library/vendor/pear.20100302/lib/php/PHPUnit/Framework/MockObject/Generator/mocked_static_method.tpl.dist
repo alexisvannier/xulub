@@ -1,0 +1,11 @@
+
+    {modifier} static function {reference}{method_name}({arguments_decl})
+    {
+        $result = self::__phpunit_getStaticInvocationMocker()->invoke(
+          new PHPUnit_Framework_MockObject_Invocation_Static(
+            '{class_name}', '{method_name}', array({arguments_call})
+          )
+        );
+
+        return $result;
+    }

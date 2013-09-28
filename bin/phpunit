@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# rendre la configuration sur php dynamique
+BIN_PHP=`which php`
+if [ ! -f $BIN_PHP ]
+then
+ echo "Le binaire PHP n'est pas défini dans votre $PATH"
+else
+ echo " - BIN_PHP : $BIN_PHP"
+fi
+
+
+# ajouté par François pour gérer le répertoire dynamiquement
+DIRECTORY=$(cd `dirname $0` && pwd)
+
+# répertoire de stockage de phpunit
+PEAR_DIR=$DIRECTORY/../library/vendor/pear.20100302/bin/
+
+$BIN_PHP -d include_path=$PEAR_DIR/../lib/php $PEAR_DIR/phpunit "$@"

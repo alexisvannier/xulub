@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>phing</name>
+ <channel>pear.phing.info</channel>
+ <summary>PHP5 project build system based on Apache Ant</summary>
+ <description>PHing Is Not GNU make; it&apos;s a project build system based on Apache Ant. 
+You can do anything with it that you could do with a traditional build system like GNU make, and its use of 
+simple XML build files and extensible PHP &quot;task&quot; classes make it an easy-to-use and highly flexible build framework. 
+Features include file transformations (e.g. token replacement, XSLT transformation, Smarty template transformations, 
+etc.), file system operations, interactive build support, SQL execution, and much more.</description>
+ <lead>
+  <name>Hans Lellelid</name>
+  <user>hans</user>
+  <email>hans@xmpl.org</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Michiel Rook</name>
+  <user>mrook</user>
+  <email>mrook@php.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-11-12</date>
+ <time>17:10:29</time>
+ <version>
+  <release>2.4.3</release>
+  <api>2.4.3</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+ <notes>
+This is the latest stable release of Phing.
+ </notes>
+ <contents>
+  <dir baseinstalldir="phing" name="/">
+   <file baseinstalldir="/" md5sum="e35951e1509e02245d17b17c1ba07d93" name="bin/pear-phing" role="script">
+    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+   </file>
+   <file baseinstalldir="/" md5sum="c9a0916976425af9c862214c780e1f8a" name="bin/pear-phing.bat" role="script">
+    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+   </file>
+   <file baseinstalldir="/" md5sum="312145e47ccf6437b2cb2b8d30bf9d3b" name="bin/phing.php" role="php" />
+   <file baseinstalldir="phing" md5sum="716044b30ef6d43803f69dfe4b867d8b" name="etc/coverage-frames.xsl" role="data" />
+   <file baseinstalldir="phing" md5sum="924c33007ae24360a2752ddf4373fd32" name="etc/log.xsl" role="data" />
+   <file baseinstalldir="phing" md5sum="9ab9e65ddb66dc2ded088d9205a9dd22" name="etc/phing-grammar.rng" role="data" />
+   <file baseinstalldir="phing" md5sum="eb7f1a1faa793f5444d17bb12e1eb2a3" name="etc/phpunit-frames.xsl" role="data" />
+   <file baseinstalldir="phing" md5sum="6551c0efabf53cca1671a51d3b37e2dd" name="etc/phpunit-noframes.xsl" role="data" />
+   <file baseinstalldir="phing" md5sum="9e733b7aeb3a46873728014871148683" name="etc/str.replace.function.xsl" role="data" />
+   <file baseinstalldir="phing" md5sum="b23501f9339098f640920fb61ee63978" name="etc/VERSION.TXT" role="data" />
+   <file baseinstalldir="phing" md5sum="c6d2d42b9e4b216f730c29a6c2bd6b8a" name="filters/BaseFilterReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9ad25d70dd380547d6f44503b404b034" name="filters/BaseParamFilterReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6af87c694ac2c30ab3e26d71d0b7dc91" name="filters/ChainableReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b4f051f3ebf6c9b562c6071c05781fde" name="filters/ExpandProperties.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c8b0470c227db29f22f41782fec8769e" name="filters/HeadFilter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5257d5d36817329fd06ee6daa3c8d30d" name="filters/IconvFilter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="50ed7da1f688562898e2294da8e066df" name="filters/LineContains.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b743f6f4b36de27f421b3015dc0141a6" name="filters/LineContainsRegexp.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d479555dff3b44deda8464ff85d77a3c" name="filters/PrefixLines.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e7670dc9a178ce7b3b8a54235d996e7f" name="filters/ReplaceRegexp.php" role="php" />
+   <file baseinstalldir="phing" md5sum="4041c469883e1435cb5d012fbfbab368" name="filters/ReplaceTokens.php" role="php" />
+   <file baseinstalldir="phing" md5sum="4f603af710fd8edec57f8bc977985a40" name="filters/ReplaceTokensWithFile.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7f850bfde3a63d4100dcf91ef2d2cb11" name="filters/StripLineBreaks.php" role="php" />
+   <file baseinstalldir="phing" md5sum="343e743909ff7a79156a7921ca85e148" name="filters/StripLineComments.php" role="php" />
+   <file baseinstalldir="phing" md5sum="86c05c713ef704f9967294b34c22bca4" name="filters/StripPhpComments.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c1e6088eb6cff1c9bcbcc31fffda4506" name="filters/StripWhitespace.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f6ee627f0d0d00d95a6e92440033b139" name="filters/TabToSpaces.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a8c8198481b8c7adde50f8df74954861" name="filters/TailFilter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="2defecf0e61b9e06d403caf7f3340e9a" name="filters/TidyFilter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="58a036fd7e0706564f6df791b42ed2dd" name="filters/TranslateGettext.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5ab394b9e3a1f5d7a6edd6ab8accc632" name="filters/XincludeFilter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8548325b97589b07296ce82878d2a076" name="filters/XsltFilter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="26e57963b2a3081ddaef27daedebdfe7" name="filters/util/ChainReaderHelper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b27bc44892d5e025c8af5dc9c99392f0" name="filters/util/IniFileTokenReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f10b08c1779eedad390c3f658cdabfa2" name="input/DefaultInputHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5425842aed62c06dad76a46deb6d084a" name="input/InputHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6d680179dd736f635842f48e26a36c7e" name="input/InputRequest.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d179cfee6dd052c3047a8909e566f273" name="input/MultipleChoiceInputRequest.php" role="php" />
+   <file baseinstalldir="phing" md5sum="451ec5f1293d3e8deccfd1b806f4fcb3" name="input/YesNoInputRequest.php" role="php" />
+   <file baseinstalldir="phing" md5sum="184569c039b4e0a453bd12bd923b658f" name="lib/Capsule.php" role="php" />
+   <file baseinstalldir="phing" md5sum="2084e922c12e949aa1186e0656a55120" name="listener/AnsiColorLogger.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9e6a4940cdef0db4d9cbe940fc91c236" name="listener/DefaultLogger.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7fe4385efae327e7ecea4d80a5dad7be" name="listener/defaults.properties" role="data" />
+   <file baseinstalldir="phing" md5sum="5dc1ab9d0bb3f69196a3284e63f9a3c5" name="listener/NoBannerLogger.php" role="php" />
+   <file baseinstalldir="phing" md5sum="60512d34b3f5cef7fc3e6ac3b22d8d84" name="listener/PearLogListener.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1d168b8476aae0cada1f52cacaba9f13" name="listener/StreamRequiredBuildLogger.php" role="php" />
+   <file baseinstalldir="phing" md5sum="830034b2a7dba9c3304aa0f50b767e0f" name="listener/XmlLogger.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b0c12c5493fe99ae09c79a7656c02997" name="mappers/FileNameMapper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="99ea6f45d71c04c77cf17f1c2fbde75e" name="mappers/FlattenMapper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="3a0a16aab61db8fb1b7e819be883b47f" name="mappers/GlobMapper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="fa2d2e46b8e51c9fec146e53df0d513d" name="mappers/IdentityMapper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="91f20bc3773810ebd00016b0d945cdee" name="mappers/MergeMapper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5b57ab37dba9ba2c7bb4f52521697766" name="mappers/RegexpMapper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="cb3e4a86df2b762028fd9bc57c8b6eea" name="parser/AbstractHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e703e6a3c0b1a6406ab1f0f111fddde4" name="parser/AbstractSAXParser.php" role="php" />
+   <file baseinstalldir="phing" md5sum="69d1cf4c3ddc62e47a97587cdcee1961" name="parser/DataTypeHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b21b62c0b38557a3e1ac647638900e6e" name="parser/ExpatParseException.php" role="php" />
+   <file baseinstalldir="phing" md5sum="bead6899bca2b44ec66f9687af4adec2" name="parser/ExpatParser.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8b88b4cb3338aba636f017da87a8b82d" name="parser/Location.php" role="php" />
+   <file baseinstalldir="phing" md5sum="35a867caf834eafc0830aaba7e80e45c" name="parser/NestedElementHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="262f0b833f6b7963e05a8e4bfd4ec682" name="parser/PhingXMLContext.php" role="php" />
+   <file baseinstalldir="phing" md5sum="08d1e4b09bf823efce7c0c2bc013b7e5" name="parser/ProjectConfigurator.php" role="php" />
+   <file baseinstalldir="phing" md5sum="35b2ed425d3a153e940c2606a7a822f9" name="parser/ProjectHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="16297c2c2e9903ba7ccfb5f694a3944b" name="parser/RootHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="448f60f64a508d19fd8f6be33537bf75" name="parser/TargetHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d603be228c807ea6472d9b8bf770e917" name="parser/TaskHandler.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6afdf0b02c9d81e13364cbee25a2b56d" name="system/io/BufferedReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f2cf57aabd5bb3a652d3c14be4a438ef" name="system/io/BufferedWriter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="945aa8f78cab6a62946400a51fa25a82" name="system/io/ConsoleReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7957575c33673fc1ef903a87a40c813d" name="system/io/FileInputStream.php" role="php" />
+   <file baseinstalldir="phing" md5sum="213d5776a9123b0dc59cac5688cf3a86" name="system/io/FileOutputStream.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d9828f9b638497ba55853e534c119970" name="system/io/FileReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d55ae1edd0475ff8bd30235749f2186c" name="system/io/FileSystem.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f2eae6e0a9da94aa6ef85caab164e90c" name="system/io/FileWriter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="dca5ba27ee8d09428d50cf7010643d52" name="system/io/FilterReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="3430834612312c7ab9e9652fc09d92d8" name="system/io/InputStream.php" role="php" />
+   <file baseinstalldir="phing" md5sum="ec4b3d4dc63c99a9985299dafaa3ff0c" name="system/io/InputStreamReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="39b7c1941ba2dd326295be0213766adb" name="system/io/IOException.php" role="php" />
+   <file baseinstalldir="phing" md5sum="edb3f7d9f8150d69971abf38afb47377" name="system/io/OutputStream.php" role="php" />
+   <file baseinstalldir="phing" md5sum="368c941d60781c353f0e3b7350fe753f" name="system/io/OutputStreamWriter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9bd37b529567d0f6568fc092a8f7d76e" name="system/io/PhingFile.php" role="php" />
+   <file baseinstalldir="phing" md5sum="2be5d0cfdab300bf640ffeb20db29a49" name="system/io/Reader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="ba3fd837736b0c3f7b978ca0a71a5d87" name="system/io/StringReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="028cdb1c59e56be6dd3a70dff66652da" name="system/io/UnixFileSystem.php" role="php" />
+   <file baseinstalldir="phing" md5sum="035a0207a794f87591f95a35c20d4b7d" name="system/io/Win32FileSystem.php" role="php" />
+   <file baseinstalldir="phing" md5sum="29393777539e6a62f67e22fb5ccddfb2" name="system/io/WinNTFileSystem.php" role="php" />
+   <file baseinstalldir="phing" md5sum="bbcab52604f10eca409f088b8f382696" name="system/io/Writer.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a16603c2d82e6305c1ed5b3a5e84ccbd" name="system/lang/Character.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e6bd7b560a0c776e9c1051d00eaf9b7a" name="system/lang/EventObject.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1f5fbc4cb190e8e97eb4e08a9dffc955" name="system/lang/FileNotFoundException.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6b06772c8ce89d87e04000700d09d31a" name="system/lang/NullPointerException.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0b1de5f80be959ed71caff99bd024872" name="system/lang/SecurityException.php" role="php" />
+   <file baseinstalldir="phing" md5sum="ba7770a189f2e4f386a41af81a0c81d3" name="system/util/Properties.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e68d1c301c957b1aecf8d9239f903638" name="system/util/Register.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1e0b818c6b01c42af5bb18a060919cbc" name="system/util/Timer.php" role="php" />
+   <file baseinstalldir="phing" md5sum="61f6525283705d7736050f5d324888cc" name="tasks/defaults.properties" role="data" />
+   <file baseinstalldir="phing" md5sum="a4dfd83790445c1f565af788b7205c8d" name="tasks/ext/CapsuleTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1a28b817b92cf7edbb38b26323268c51" name="tasks/ext/ExportPropertiesTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="437be8d2f18a055d7c3c48731351ab76" name="tasks/ext/ExtractBaseTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="ee2975cf91b14fadef43779623a09382" name="tasks/ext/FileHashTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="012f0da3dbf32f6f461094c246dab1a5" name="tasks/ext/FileSizeTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5c911c00c3c7e35fc15cd40cac309620" name="tasks/ext/FtpDeployTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="dce67bc3dcf495d4164ac88c27fe7411" name="tasks/ext/HttpGetTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c9675bdc976af096af9eb3f5c2aa26f6" name="tasks/ext/HttpRequestTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="4e6632c2caf79ff17c138a2c5908f7df" name="tasks/ext/JslLintTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d1aa6aa819c300dc0d4a89f11f08bdb2" name="tasks/ext/MailTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e365b5a552ff09507d9609b9d429ff51" name="tasks/ext/ManifestTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="dc94d931cb8d9bd71ea11bd3c7d6c977" name="tasks/ext/PackageAsPathTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1969bc374f877f0d1076e877316a99fa" name="tasks/ext/PatchTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6a532834346537cf8b2c0b29a0a8f83a" name="tasks/ext/PearPackage2Task.php" role="php" />
+   <file baseinstalldir="phing" md5sum="4373fc9cf412e4629f093c3ea545b7dd" name="tasks/ext/PearPackageTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b423af0130249312257fc677a91d9e69" name="tasks/ext/PhpCodeSnifferTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9a671bfadc4d64a81d82d53ebadfaafb" name="tasks/ext/PhpLintTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="681240fd17e8cc8d1409c23aff98018e" name="tasks/ext/ReplaceRegexpTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6894edf1d06b422fc6fd281fed67928b" name="tasks/ext/ScpTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="002e3199f4a1c57be1a1a82358779059" name="tasks/ext/SmartyTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="cdf1fc1fdf7ab9edf17a0c1771617f72" name="tasks/ext/SshTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7b6b90797f03096749f9a0a397653548" name="tasks/ext/SymlinkTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="2118f8e1d64a3930ed01e192549f3af6" name="tasks/ext/TarTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="46605bc5efb1a16eab287ca77a50d99e" name="tasks/ext/UntarTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="01a465d90f06373d8d5e8553990ecda8" name="tasks/ext/UnzipTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d999e2e9e240dfca02b1b90d254e9174" name="tasks/ext/VersionTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="067e33bed4b85d259d9c9bb2cc050425" name="tasks/ext/XmlLintTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="32b42a6ea9fcb4c4151156d9fab85df8" name="tasks/ext/XmlPropertyTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a04319f7d0127758762b1bb3cb1fff84" name="tasks/ext/ZendCodeAnalyzerTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="82468db4c54b8fe5d7bd07f52b713a6b" name="tasks/ext/ZipTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a9d23016cd7eca648dfa985bd5293983" name="tasks/ext/coverage/CoverageMerger.php" role="php" />
+   <file baseinstalldir="phing" md5sum="4d34074dc1c934b2de3f13b3ecc07dad" name="tasks/ext/coverage/CoverageMergerTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="63562db1152bbfcd862492e11673dbe7" name="tasks/ext/coverage/CoverageReportTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="42d62b7bc9915111a6ef2d94c1e7115a" name="tasks/ext/coverage/CoverageReportTransformer.php" role="php" />
+   <file baseinstalldir="phing" md5sum="3d374779571c383deb80953b7e941c7b" name="tasks/ext/coverage/CoverageSetupTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7cc99127af6ed7601afb0b7ceb812d24" name="tasks/ext/coverage/CoverageThresholdTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c8725f548cff06b5bbb46af2231085ec" name="tasks/ext/creole/CreoleSQLExecTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6a1f408904fb833e3788097c3965ea33" name="tasks/ext/creole/CreoleTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="28957e0653eb6c19c6aada7b7fb16c9b" name="tasks/ext/dbdeploy/DbDeployTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0045e88b8fff06560d61b35bf0b1d5f0" name="tasks/ext/dbdeploy/DbmsSyntax.php" role="php" />
+   <file baseinstalldir="phing" md5sum="3d7426dd64debd57e712e9511902c092" name="tasks/ext/dbdeploy/DbmsSyntaxFactory.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b52ecc101c59b18d54442a87919c87f2" name="tasks/ext/dbdeploy/DbmsSyntaxMsSql.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6577a741f501205bed5deda2100a427d" name="tasks/ext/dbdeploy/DbmsSyntaxMysql.php" role="php" />
+   <file baseinstalldir="phing" md5sum="26ac7c728b81396f8467be9bc0f8d04a" name="tasks/ext/dbdeploy/DbmsSyntaxSQLite.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a6a071819ef40d14a3fa0ac0d3c4a9fc" name="tasks/ext/git/GitBaseTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="014992c3612b4a7e4666ade5e9e11fb4" name="tasks/ext/git/GitBranchTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f0835e60c78fb09587bb12989f8afcf8" name="tasks/ext/git/GitCheckoutTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b9a68128ad79b67cc2491d82b2f2af34" name="tasks/ext/git/GitCloneTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f892cefb45cc32505d3e8b332f89e837" name="tasks/ext/git/GitFetchTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0365b27d0bfbf4840f402f6510706c43" name="tasks/ext/git/GitGcTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e511a1390e736e5ab3c25d893055983b" name="tasks/ext/git/GitInitTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8ba55fdb6263420a54adb0ec304f4ee6" name="tasks/ext/git/GitMergeTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f1b050fbfca03d99fa32ebb5be9a9233" name="tasks/ext/git/GitPullTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d06a393b8a34cd683239b464fcbd80eb" name="tasks/ext/git/GitPushTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="847c159d336b094f1705c8f697a98855" name="tasks/ext/ioncube/IoncubeComment.php" role="php" />
+   <file baseinstalldir="phing" md5sum="00646cf953e0fa4becacbe22f3fdaa8d" name="tasks/ext/ioncube/IoncubeEncoderTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="fcea7c428b11667097390bb899475825" name="tasks/ext/ioncube/IoncubeLicenseTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="dc0cd6b50d7eeaca50a5ac85b25ffdb2" name="tasks/ext/jsmin/JsMin.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d1ee270856d2a37b084094520a5f82dc" name="tasks/ext/jsmin/JsMinTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="cccda1e522dee0695fa82eb0c9a53f27" name="tasks/ext/pdepend/PhpDependAnalyzerElement.php" role="php" />
+   <file baseinstalldir="phing" md5sum="60797002e887a4f873ce9d6acc12fa73" name="tasks/ext/pdepend/PhpDependLoggerElement.php" role="php" />
+   <file baseinstalldir="phing" md5sum="ea06c7597e302e2729e510fec228b796" name="tasks/ext/pdepend/PhpDependTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="59d0fb4569e8cb2c50cad3cbaf779524" name="tasks/ext/pdo/PDOResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="de7c8129a5fee80dd3ca47923d65be6c" name="tasks/ext/pdo/PDOSQLExecFormatterElement.php" role="php" />
+   <file baseinstalldir="phing" md5sum="af92ac5503d3fe57d972e558956bb921" name="tasks/ext/pdo/PDOSQLExecTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="07ba10eefd07ab21a6ddb219b87b2721" name="tasks/ext/pdo/PDOTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d2a6045c1c32f4ad6afdcc829169df6f" name="tasks/ext/pdo/PlainPDOResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="260215e18e803e40aaf68483ec91635b" name="tasks/ext/pdo/XMLPDOResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="18d907223b43f365f57e3669a5c4a431" name="tasks/ext/pearpackage/Fileset.php" role="php" />
+   <file baseinstalldir="phing" md5sum="af6cecf7cbff0f122b5f28256aba08a4" name="tasks/ext/phar/IterableFileSet.php" role="php" />
+   <file baseinstalldir="phing" md5sum="bcad65a8a57383dffed98ec86b9ff60a" name="tasks/ext/phar/PharMetadata.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1d9bab35c4f9de5637b27640e78b27a2" name="tasks/ext/phar/PharMetadataElement.php" role="php" />
+   <file baseinstalldir="phing" md5sum="281a97a27e934c520965965799ac93f1" name="tasks/ext/phar/PharPackageTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="91ebebacdec88d2fe851b1953e03045d" name="tasks/ext/phk/PhkPackageTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="789a379524df7dcf93f70c2389ce4126" name="tasks/ext/phk/PhkPackageWebAccess.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0e3f2fbb5fe7a3c54045ecb9ce4aba9b" name="tasks/ext/phk/PhkPackageWebAccessPath.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8d5311b2beab8b568799e76de0540c24" name="tasks/ext/phpcpd/PHPCPDFormatterElement.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d6389df56661d2c6407e4f72085379b8" name="tasks/ext/phpcpd/PHPCPDTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="34da28a6c807df3fff870855f55d0efd" name="tasks/ext/phpcpd/formatter/DefaultPHPCPDResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="21b88dcf14f1bcebf356517077c606fc" name="tasks/ext/phpcpd/formatter/PHPCPDResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="2f0880b871a58bed558cb103e1c1452a" name="tasks/ext/phpcpd/formatter/PMDPHPCPDResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6b05b35553ae14a3920de86432f95fc6" name="tasks/ext/phpdoc/PhingPhpDocumentorErrorTracker.php" role="php" />
+   <file baseinstalldir="phing" md5sum="377d94722f56f105c57794b015bd51c1" name="tasks/ext/phpdoc/PhingPhpDocumentorSetup.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a40b0117644cb0276e51dcdd183154a7" name="tasks/ext/phpdoc/PhingPhpDocumentorSetup.php.orig" role="data" />
+   <file baseinstalldir="phing" md5sum="36d2cde8a8b1ffdaa2f5840a2feab429" name="tasks/ext/phpdoc/PhpDocumentorExternalTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="ae9b56febe62dd37bac038ca1858323b" name="tasks/ext/phpdoc/PhpDocumentorTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="063b8d47a3130bd8a73a8d5315fa4592" name="tasks/ext/phpmd/PHPMDFormatterElement.php" role="php" />
+   <file baseinstalldir="phing" md5sum="20fc795f2b54fedc93f8b10c85fe9b97" name="tasks/ext/phpmd/PHPMDTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="922f1cb03adb85b7e03bcb1fe5e9b836" name="tasks/ext/phpunit/BatchTest.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d83516997c49c8a89a809ca41926e8b2" name="tasks/ext/phpunit/FormatterElement.php" role="php" />
+   <file baseinstalldir="phing" md5sum="43206084906ae2f82814378e68ab13cc" name="tasks/ext/phpunit/PHPUnitReportTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="bec4728e3ffd6caa4da13c03be77a357" name="tasks/ext/phpunit/PHPUnitTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0ec74612310d2097b7a0726d09e44c2b" name="tasks/ext/phpunit/PHPUnitTestRunner.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c4337e528143e67f3feba89490454b31" name="tasks/ext/phpunit/PHPUnitUtil.php" role="php" />
+   <file baseinstalldir="phing" md5sum="59f3b9729b31052c21d736108f1367ba" name="tasks/ext/phpunit/formatter/CloverPHPUnitResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9206ece7be8bda0206dcf80476149fe9" name="tasks/ext/phpunit/formatter/PHPUnitResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1243ca05f58eec767373d2a8c90ae62f" name="tasks/ext/phpunit/formatter/PlainPHPUnitResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7b6cda3dbd64dac0dfbff668248e98f3" name="tasks/ext/phpunit/formatter/SummaryPHPUnitResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e9435a7542ab7258eb1d3ecb1399726e" name="tasks/ext/phpunit/formatter/XMLPHPUnitResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="44e949c062b9ca78694e220aa38bb255" name="tasks/ext/Service/Amazon.php" role="php" />
+   <file baseinstalldir="phing" md5sum="55e0fd346bc5df9fb9804cda27444d0d" name="tasks/ext/Service/Amazon/S3.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e970fc22f98b0f02c2259ed76403df10" name="tasks/ext/Service/Amazon/S3/S3GetTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1fb257a3eaffe510347d5eb1eb7496b3" name="tasks/ext/Service/Amazon/S3/S3PutTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="870618e365be45989033d183d0b7f9c0" name="tasks/ext/simpletest/SimpleTestCountResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="733efe2962563e3227e828124ecd18df" name="tasks/ext/simpletest/SimpleTestDebugResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b1f875b3c6caa3f861eb88b585b8ecb3" name="tasks/ext/simpletest/SimpleTestFormatterElement.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9d5d468253a76355631749edfaab48df" name="tasks/ext/simpletest/SimpleTestPlainResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f0b1075be6427b4edebecd212ab64d4b" name="tasks/ext/simpletest/SimpleTestResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7ebe577b178319eb361d61d042456bd3" name="tasks/ext/simpletest/SimpleTestSummaryResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="88b798e20d80f8c614ce2d1707275410" name="tasks/ext/simpletest/SimpleTestTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="01474963a9090d33a1ec8ccd4f414888" name="tasks/ext/simpletest/SimpleTestXmlResultFormatter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="69b2ed4ff41c8c6c50a03c81d0ad2432" name="tasks/ext/svn/SvnBaseTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="cc84265d43ddc97de9c992cb712b24df" name="tasks/ext/svn/SvnCheckoutTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c6140607b8e7dee5e5b88b5717bbaefc" name="tasks/ext/svn/SvnCommitTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="32f265f91dd8570380c15fe7110a9333" name="tasks/ext/svn/SvnCopyTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e385626ad6434f8919f1e6db325321b4" name="tasks/ext/svn/SvnExportTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6b5cdd65745e4345ed9d6e16291f1237" name="tasks/ext/svn/SvnLastRevisionTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="78ae1e4630cdac7637f1055609ed4696" name="tasks/ext/svn/SvnSwitchTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="cd590f6192017fb5a243c7ebb1fc99e5" name="tasks/ext/svn/SvnUpdateTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a086e074b9dd74e8c3c40f31dce2912e" name="tasks/system/AdhocTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="21213330499afd348b0a270e70ce3d07" name="tasks/system/AdhocTaskdefTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7f1a82bfe9c390e26ea44d06c43d5bf0" name="tasks/system/AdhocTypedefTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e7a32e15dabb9103065e96012a38534b" name="tasks/system/AppendTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="3e61a6f5a44e3b9ee98ce7dc4a4b2e86" name="tasks/system/AvailableTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e05bf435d16bdb6df94031069fb03cfd" name="tasks/system/ChmodTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="70a1aa1c698e2608674909ff9ecdce57" name="tasks/system/ChownTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b3f6dc8742841c46deae80287a12a028" name="tasks/system/ConditionTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9920e40040a71b4979f277bd599dc86b" name="tasks/system/CopyTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="ac84dacf47ec345df3eb8fe2758c05ed" name="tasks/system/CvsPassTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b1decb6b61cfe44e3952d864b7372c76" name="tasks/system/CvsTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="6d54e07b0a7a900bb40173fa02bc8318" name="tasks/system/DeleteTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="544014d0cb62621cf3cf9171dc153cb2" name="tasks/system/EchoTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9c3ed7bfeec08a23b05bc7882d830cb6" name="tasks/system/ExecTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a3d4d17e823921aa13511da876969614" name="tasks/system/ExitTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="fd3731610b40b197d8c4f86759667aba" name="tasks/system/ForeachTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="4544190c4207e0a37bf6dfadf1208d68" name="tasks/system/IfTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d51eebe7484fc0fa55555afcfe49566a" name="tasks/system/ImportTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d8645cc92b273e8550e27965f90109d7" name="tasks/system/IncludePathTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="3765322a5ca34f85e39b23297f7d3b1d" name="tasks/system/InputTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="2f1a36e8089f264c480f533068d8afd5" name="tasks/system/MatchingTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="af61fb42d7378c4943ff76f34a225d73" name="tasks/system/MkdirTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="bad72b8d9c6151bcf3662e0999a7049c" name="tasks/system/MoveTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e29309e22eb0364999dcd8eb43cecde2" name="tasks/system/PhingCallTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1eb1ff7b987d03cc4882d33f1ad72ba6" name="tasks/system/PhingTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="12ee271540016e283b38c90c06b36308" name="tasks/system/PhpEvalTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="578b9c36c45ee3a320034f7aa2f0f148" name="tasks/system/PropertyPromptTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c230b63abd7b1b95b5b676563553aea2" name="tasks/system/PropertyTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8f42c62c482685f44860750c04fdfafb" name="tasks/system/ReflexiveTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8f00c261737406583e3dec8001b422d2" name="tasks/system/ResolvePathTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7d32dc6273ee70cd1195b2e0ba297151" name="tasks/system/SequentialTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0f0d87f003ebe640a446a4f0781756d6" name="tasks/system/TaskdefTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="37ae05aba9a2d5d8d2bc5febc42ee634" name="tasks/system/TouchTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0cecfa25745af0c71ba510a6a6134b53" name="tasks/system/TstampTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="944b5e6d3cf3cb60350d8ea340e1793b" name="tasks/system/TypedefTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9ed654f0393f1287dc878e08f331d27b" name="tasks/system/UpToDateTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="02d5ea63ab71afcafba1588151ec02fb" name="tasks/system/WarnTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="53dab1478b113f901f7c9f47ce203895" name="tasks/system/XsltTask.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5583203ed89a5e2f66b7dab0c743f9db" name="tasks/system/condition/AndCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="037aedeca1e53bc75c67b4ef0ec02225" name="tasks/system/condition/Condition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="64a2ec505ad4388e7691b6f5fc5e312f" name="tasks/system/condition/ConditionBase.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b940a05c27734f6053a0993688ba6b14" name="tasks/system/condition/ContainsCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="230db1431993a43a506c8f3c07f29612" name="tasks/system/condition/EqualsCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0bbaec4a213b2c1d84d4f1f49f99f292" name="tasks/system/condition/IsFalseCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="73659beb48aafb4a323f661c5ac27d03" name="tasks/system/condition/IsSetCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="377e267cfb84f62f7cb5a88407f957f6" name="tasks/system/condition/IsTrueCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c29e83fc6130e664809ccd94784277ed" name="tasks/system/condition/NotCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="94ca03d6bf6bf62f456ffef6168e0c59" name="tasks/system/condition/OrCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="87dab0b0ba2f37bc48c2749f5605af61" name="tasks/system/condition/OsCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9853a896fe91f5fd4d53f7114bdd6661" name="tasks/system/condition/ReferenceExistsCondition.php" role="php" />
+   <file baseinstalldir="phing" md5sum="44222a14df7b67571edd1849227e5524" name="types/AbstractFileSet.php" role="php" />
+   <file baseinstalldir="phing" md5sum="fa625db5a643febd113da2197f4934ee" name="types/Commandline.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5272a48719bbc2180a0f7a67e6c0e376" name="types/DataType.php" role="php" />
+   <file baseinstalldir="phing" md5sum="799248aa46bf4c4d78c25b7e5c68bc0e" name="types/defaults.properties" role="data" />
+   <file baseinstalldir="phing" md5sum="8d17813dd25ed9edfded2eb75de894a0" name="types/Description.php" role="php" />
+   <file baseinstalldir="phing" md5sum="00fa30c4bf96a7e558c0c3c9f9571090" name="types/DirSet.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0cc4ea1bd93b9d972cabf8d0dcef7ec1" name="types/FileList.php" role="php" />
+   <file baseinstalldir="phing" md5sum="49cbf6381f0fecebdf2976714ea5771e" name="types/FileSet.php" role="php" />
+   <file baseinstalldir="phing" md5sum="07a9f2f17dc15a8313e388628cc6a236" name="types/FilterChain.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1aac9a979c43bce788354d0184926a32" name="types/Mapper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="52f7e28fd33105bc99b8c2e19942c3ba" name="types/Parameter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9110b96eeeed900dd4c352909767b228" name="types/Parameterizable.php" role="php" />
+   <file baseinstalldir="phing" md5sum="15db9526acb24066ea39601246813458" name="types/Path.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b15f209f15012229f85e5374193c4da4" name="types/PatternSet.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a0e1488e7d8f9b4129917be7adddf5fa" name="types/PhingFilterReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8722a34136ba145a4aaea33b4946b705" name="types/Reference.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f9870c162e932b42cd4edad4e6e74f3c" name="types/RegularExpression.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a6ffb8012028bbe5cc9a915463dae8b1" name="types/TokenReader.php" role="php" />
+   <file baseinstalldir="phing" md5sum="89d0dcdd68ab588ba812d8cbb8d28df4" name="types/TokenSource.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d3faabe0c6371bae006f2c0b41aebfbf" name="types/selectors/AndSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="9d76bf4e6ca89bba19abd80f8ab52c77" name="types/selectors/BaseExtendSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="994d3b6d8abe0e113662114c78ed97fc" name="types/selectors/BaseSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="f3cea511efbc88b12290b634243ec865" name="types/selectors/BaseSelectorContainer.php" role="php" />
+   <file baseinstalldir="phing" md5sum="dbe09833cfc393d238e87bc2331eb8f3" name="types/selectors/ContainsRegexpSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b2a9dc938b09902657591643436335cc" name="types/selectors/ContainsSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5882f56fbc245e1e7550590089be06cd" name="types/selectors/DateSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8a112c7299927dd8f3a38ab6afff2e60" name="types/selectors/DependSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="fdfce69d96af3327bb6c1e3e99684270" name="types/selectors/DepthSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5cd6061d128e8deab2556c1bc37fb98d" name="types/selectors/ExtendFileSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a6ebaabbd9c541a0237f2b03bf7ae50e" name="types/selectors/ExtendSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5009882e94345b82b09367b5896ddede" name="types/selectors/FilenameSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="ac6edb525dd17ef52b8a052182b5d974" name="types/selectors/FileSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="43f5a9c476c7c8bfa3605c41a9884cae" name="types/selectors/MajoritySelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="afd2263a4766851e2e66fd2023692567" name="types/selectors/NoneSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="733286b580357dbad2cfba4115b65584" name="types/selectors/NotSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="4e1421df4665f7815b537e3ce800b4c5" name="types/selectors/OrSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="dc67ff7ceeb7588b0b1707c8b3264e9d" name="types/selectors/PresentSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="8fbd3e7fe49f73d8723476592f925e1d" name="types/selectors/SelectorContainer.php" role="php" />
+   <file baseinstalldir="phing" md5sum="73fa11775b7f48dadbb1ce0866788622" name="types/selectors/SelectorScanner.php" role="php" />
+   <file baseinstalldir="phing" md5sum="862ecb40efda620820ef648a645cbc02" name="types/selectors/SelectorUtils.php" role="php" />
+   <file baseinstalldir="phing" md5sum="288399b25588ed1bcd4ffb78c9ce2e3f" name="types/selectors/SelectSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="dbba5253190cb3813275e029a13b9c39" name="types/selectors/SizeSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5b080d7356cbf2fd62fd42f8d08f7473" name="types/selectors/TypeSelector.php" role="php" />
+   <file baseinstalldir="phing" md5sum="797746d9d46584dbd2931d6223fc4d81" name="util/DataStore.php" role="php" />
+   <file baseinstalldir="phing" md5sum="090ce5e304a96ee7c1867b9c6593bbaa" name="util/DirectoryScanner.php" role="php" />
+   <file baseinstalldir="phing" md5sum="a9bfaa6ebe5e686a7cf35c7e999f722f" name="util/ExtendedFileStream.php" role="php" />
+   <file baseinstalldir="phing" md5sum="78bd03c74e7bd455c52e3b5d1f246116" name="util/FileUtils.php" role="php" />
+   <file baseinstalldir="phing" md5sum="22bf8109978469cc2c37e7f16099558f" name="util/LogWriter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="5048076f77d491e521a21139315a5961" name="util/PathTokenizer.php" role="php" />
+   <file baseinstalldir="phing" md5sum="bfcd2ada81a0ad7388619b6ae56230b9" name="util/SourceFileScanner.php" role="php" />
+   <file baseinstalldir="phing" md5sum="29a47ab527e3e86465a89144dd6c9771" name="util/StringHelper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="bd7c8db4a75ef9bed70a359d4d05b3d6" name="util/regexp/PregEngine.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b0a4a0c20094023bb06db3a9eb1fcc9a" name="util/regexp/Regexp.php" role="php" />
+   <file baseinstalldir="phing" md5sum="e2868a3981caf0103a6dac6537ab13b6" name="util/regexp/RegexpEngine.php" role="php" />
+   <file baseinstalldir="phing" md5sum="97cffb0277f755aca139337c71a1f6ca" name="BuildEvent.php" role="php" />
+   <file baseinstalldir="phing" md5sum="2e3e226e1fb70c982e9d950f186ca50c" name="BuildException.php" role="php" />
+   <file baseinstalldir="phing" md5sum="c95a66b70162605c13db3548fde4b0e2" name="BuildListener.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b679fb15d79ea8a6784903faaa2b6267" name="BuildLogger.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b095eeee921d2c16705f51e90473c45a" name="CHANGELOG" role="doc" />
+   <file baseinstalldir="phing" md5sum="65a413fe48316c640e05ee1d6bce96ab" name="ComponentHelper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="1360ce9c9d0c033f1f77eba3f2a464f8" name="ConfigurationException.php" role="php" />
+   <file baseinstalldir="phing" md5sum="17dabd4da7671da1d1d4af719f1ae64c" name="CREDITS" role="doc" />
+   <file baseinstalldir="phing" md5sum="979302f71796bdfa117bcd98febc6ba4" name="IntrospectionHelper.php" role="php" />
+   <file baseinstalldir="phing" md5sum="0a2634288d604189b408279efd1d5faf" name="Phing.php" role="php">
+    <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+   </file>
+   <file baseinstalldir="phing" md5sum="358f3da1771fcaf7d238665f0fa6d96c" name="Project.php" role="php" />
+   <file baseinstalldir="phing" md5sum="b36a905198241a57a94f67a6816712ff" name="ProjectComponent.php" role="php" />
+   <file baseinstalldir="phing" md5sum="fb5379084e56ded228cc06b92e185725" name="README" role="doc" />
+   <file baseinstalldir="phing" md5sum="861355ac2f46c40010ecf623470d56a9" name="RuntimeConfigurable.php" role="php" />
+   <file baseinstalldir="phing" md5sum="af6a079293174cf7836e01082e0b2f9c" name="Target.php" role="php" />
+   <file baseinstalldir="phing" md5sum="d3990067994d41d8a00d934690fb5b65" name="Task.php" role="php" />
+   <file baseinstalldir="phing" md5sum="7533b9e0afacb62e63f60b415c6ac5db" name="TaskAdapter.php" role="php" />
+   <file baseinstalldir="phing" md5sum="38d68600a5292b64d1e494e63d773837" name="TaskContainer.php" role="php" />
+   <file baseinstalldir="phing" md5sum="3cdaf44030f64560d502499347a89453" name="UnknownElement.php" role="php" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.8.0</min>
+   </pearinstaller>
+  </required>
+  <optional>
+   <package>
+    <name>phingdocs</name>
+    <channel>pear.phing.info</channel>
+    <min>2.4.3</min>
+   </package>
+   <package>
+    <name>VersionControl_SVN</name>
+    <channel>pear.php.net</channel>
+    <min>0.3.4</min>
+   </package>
+   <package>
+    <name>PHPUnit</name>
+    <channel>pear.phpunit.de</channel>
+    <min>3.4.0</min>
+   </package>
+   <package>
+    <name>PhpDocumentor</name>
+    <channel>pear.php.net</channel>
+    <min>1.4.0</min>
+   </package>
+   <package>
+    <name>Xdebug</name>
+    <channel>pecl.php.net</channel>
+    <min>2.0.5</min>
+   </package>
+   <package>
+    <name>Archive_Tar</name>
+    <channel>pear.php.net</channel>
+    <min>1.3.0</min>
+   </package>
+   <package>
+    <name>PEAR_PackageFileManager</name>
+    <channel>pear.php.net</channel>
+    <min>1.5.2</min>
+   </package>
+  </optional>
+ </dependencies>
+ <phprelease>
+  <installconditions>
+   <os>
+    <name>windows</name>
+   </os>
+  </installconditions>
+  <filelist>
+   <install as="phing.php" name="bin/phing.php" />
+   <install as="phing.bat" name="bin/pear-phing.bat" />
+   <ignore name="bin/pear-phing" />
+  </filelist>
+ </phprelease>
+ <phprelease>
+  <filelist>
+   <install as="phing.php" name="bin/phing.php" />
+   <install as="phing" name="bin/pear-phing" />
+   <ignore name="bin/pear-phing.bat" />
+  </filelist>
+ </phprelease>
+ <changelog>
+  <release>
+   <version>
+    <release>2.4.3</release>
+    <api>2.4.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-11-12</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+This is the latest stable release of Phing.
+   </notes>
+  </release>
+ </changelog>
+</package>
