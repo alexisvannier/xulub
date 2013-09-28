@@ -24,31 +24,31 @@
  * @version $Id$
  */
 
-// definit la version du framework à utiliser
-// @todo : remplacer tout ça, par une fonction ou une méthode statique
+// definit la version du framework ï¿½ utiliser
+// @todo : remplacer tout ï¿½a, par une fonction ou une mï¿½thode statique
 defined('FRAMEWORK_VERSION')
         || define('FRAMEWORK_VERSION', '0.8.0');
 
-// définit le répertoire application (de ZF)
+// dï¿½finit le rï¿½pertoire application (de ZF)
 defined('APPLICATION_PATH')
         || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
 
-// définit le contexte de l'application (developpement / recette /production)
+// dï¿½finit le contexte de l'application (developpement / recette /production)
 defined('APPLICATION_ENV')
         || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'stage'));
 
-// définit le répertoire où se trouve le framework
+// dï¿½finit le rï¿½pertoire oï¿½ se trouve le framework
 defined('FRAMEWORK_PATH')
         || define('FRAMEWORK_PATH', realpath(APPLICATION_PATH . '/../../xulub-' . FRAMEWORK_VERSION));
 
-// définit le include_path
+// dï¿½finit le include_path
 set_include_path(implode(PATH_SEPARATOR, array(
-            realpath(FRAMEWORK_PATH . '/library/internal'), # répertoire où se trouve ZF
-            '.'                                             # répertoire courant
+            realpath(FRAMEWORK_PATH . '/library/internal'), # rï¿½pertoire oï¿½ se trouve ZF
+            '.'                                             # rï¿½pertoire courant
         )));
 
 // on charge le Xulub_Application (qui va ensuite s'occupe de charger les plugins)
-// Xulub_Application est un héritage de Zend_Application permettant de gérer le cache
+// Xulub_Application est un hï¿½ritage de Zend_Application permettant de gï¿½rer le cache
 // sur le fichier de configuration
 require_once 'Xulub/Application.php';
 try
@@ -66,14 +66,14 @@ catch (Zend_Exception $e)
 {
     /**
      * En cas d'erreur, on affiche la page de maintenance.
-     * L'erreur d'exécution est renvoyé au gestionnaire global de gestion des erreurs
+     * L'erreur d'exï¿½cution est renvoyï¿½ au gestionnaire global de gestion des erreurs
      * (fichiers de log de PHP)
      */
     //require(dirname(__FILE__) . '/maintenance.html');
-    // on fait un trigger pour logger dans le log de PHP (définit par l'environnement)
-    trigger_error('Problème dans le chargement de l\'application : ' . $e->getMessage());
-    // pour débugger :
-    if (APPLICATION_ENV !== 'production') {
+    // on fait un trigger pour logger dans le log de PHP (dï¿½finit par l'environnement)
+    trigger_error('Problï¿½me dans le chargement de l\'application : ' . $e->getMessage());
+    // pour dï¿½bugger :
+    if (APPLICATION_ENV !== 'stage') {
        var_dump($e);
     }
 }
