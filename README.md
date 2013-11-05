@@ -22,7 +22,7 @@ La version du framework à utiliser est indiquée dans le fichier index.php via 
 ### arborescence des projets
 
 ...
-+-- monprojet
+    +-- monprojet
 	+-- application
 	¦   +-- Bootstrap.php      : fichier de bootstrap de l'application (voir Zend_Application)
 	¦   +-- configs            : répertoire contenant la configuration de l'application
@@ -47,7 +47,7 @@ La version du framework à utiliser est indiquée dans le fichier index.php via 
 	+-- sql
 		+-- ddl
 		+-- dml
-+-- xulub-0.8.0
+    +-- xulub-0.8.0
 	+-- library                : répertoire contenant les librairies Xulub
 	¦
 	¦
