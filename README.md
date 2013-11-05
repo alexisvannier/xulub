@@ -1,7 +1,13 @@
 xulub
-=====
+***
 
 php framework using Zend Framework 1.x and Smarty
+ * MVC model
+ * minify js and css
+ * concatenate js and css
+ * ACL per view
+ * multiple cache level
+ * externals translation
 
 
 # Documentation de la version 0.8.x
@@ -20,64 +26,61 @@ xulub-X.Y.Z avec X.Y.Z la version du framework (exemple : xulub-0.8.0). Cette no
 La version du framework à utiliser est indiquée dans le fichier index.php via la constante FRAMEWORK_VERSION.
 
 ### arborescence des projets
-`
-    +-- monprojet
-	+-- application
-	¦   +-- Bootstrap.php      : fichier de bootstrap de l'application (voir Zend_Application)
-	¦   +-- configs            : répertoire contenant la configuration de l'application
-	¦   +-- controllers        : répertoire des controllers
-	¦   +-- share
-	¦       +-- cache          : répertoire de cache
-	¦       +-- locale         : répertoire des locale
-	¦       +-- logs           : répertoire des logs
-	¦       +-- session        : contient les sessions
-	¦       +-- smarty         : smarty (utile ?)
-	+-- build.xml              : script build.xml de phing
-	+-- library                : répertoire contenant les librairies partagées
-	¦   +-- namespace          : exemple Authintranet, Spa, ...
-	¦       +-- models         : répertoire des models
-	+-- livraison.properties
-	+-- public
-	¦   +-- css
-	¦   +-- img
-	¦   +-- js
-	¦   +-- index.php
-	+-- scripts
-	+-- sql
-		+-- ddl
-		+-- dml
-    +-- xulub-0.8.0
-	+-- library                : répertoire contenant les librairies Xulub
-	¦
-	¦
+
+        +-- monprojet
+            +-- application
+            ¦   +-- Bootstrap.php      : fichier de bootstrap de l'application (voir Zend_Application)
+            ¦   +-- configs            : répertoire contenant la configuration de l'application
+            ¦   +-- controllers        : répertoire des controllers
+            ¦   +-- share
+            ¦       +-- cache          : répertoire de cache
+            ¦       +-- locale         : répertoire des locale    
+            ¦       +-- logs           : répertoire des logs
+            ¦       +-- session        : contient les sessions
+            ¦       +-- smarty         : smarty (utile ?)
+            +-- build.xml              : script build.xml de phing
+            +-- library                : répertoire contenant les librairies partagées
+            ¦   +-- namespace          : exemple Authintranet, Spa, ...
+            ¦       +-- models         : répertoire des models
+            +-- livraison.properties
+            +-- public
+            ¦   +-- css
+            ¦   +-- img
+            ¦   +-- js
+            ¦   +-- index.php
+            +-- scripts
+            +-- sql
+                +-- ddl
+                +-- dml
+        +-- xulub-0.8.0
+            +-- library                : répertoire contenant les librairies Xulub
+            ¦
+            ¦
 `
 
 ## gestion du MVC
 
 A ajouter dans le fichier application.ini pour gérer le MVC : 
 
-...
-    ; les contrôleurs se trouvent directement dans le répertoire controllers (donc chaine vide)
-    resources.frontController.modulecontrollerdirectoryname = ""
-    ; répertoire où sont stockés les modules
-    resources.frontController.moduledirectory = APPLICATION_PATH "/controllers"
-    resources.frontController.params.displayExceptions = 0
-...
-
+        ; les contrôleurs se trouvent directement dans le répertoire controllers (donc chaine vide)
+        resources.frontController.modulecontrollerdirectoryname = ""
+        ; répertoire où sont stockés les modules
+        resources.frontController.moduledirectory = APPLICATION_PATH "/controllers"
+        resources.frontController.params.displayExceptions = 0
 
 ## Gestion du layout
 
 La gestion du choix du layout selon le profil de l'URL est géré par le plugin Xulub_Controller_Plugin_LayoutFromRoute. 
 Les variables de configuration sont les suivantes : 
 
-...
-    ; layout utilisé par défaut
-    resources.layout.layout = public
-    ; variable qui remplacera le contenu principal
-    resources.layout.contentKey = contenu
-    ; répertoire où se trouve les layouts
-    resources.layout.layoutPath = APPLICATION_PATH "/controllers/layout/template"
-...
+
+        ; layout utilisé par défaut
+        resources.layout.layout = public
+        ; variable qui remplacera le contenu principal
+        resources.layout.contentKey = contenu
+        ; répertoire où se trouve les layouts
+        resources.layout.layoutPath = APPLICATION_PATH "/controllers/layout/template"
+
 
 A noter : le layout par défaut utilisé est défini par la variable resources.layout.layout (Si vous souhaitez utiliser par défaut le layout private, vous devez spécifier resources.layout.layout = private)
 
@@ -85,15 +88,13 @@ A noter : le layout par défaut utilisé est défini par la variable resources.l
 
 Une route est définie dans le fichier de configuration par : 
 
-...
-    resources.router.routes.global.route = ":langue/:profil/:module/:controller/*"
-    resources.router.routes.global.defaults.langue = "fr"
-    resources.router.routes.global.defaults.profil = "public"
-    resources.router.routes.global.reqs.profil = "public"
-    resources.router.routes.global.defaults.module = "Accueil"
-    resources.router.routes.global.defaults.controller = "Accueil"
-    resources.router.routes.global.defaults.action = "index"
-...
+        resources.router.routes.global.route = ":langue/:profil/:module/:controller/*"
+        resources.router.routes.global.defaults.langue = "fr"
+        resources.router.routes.global.defaults.profil = "public"
+        resources.router.routes.global.reqs.profil = "public"
+        resources.router.routes.global.defaults.module = "Accueil"
+        resources.router.routes.global.defaults.controller = "Accueil"
+        resources.router.routes.global.defaults.action = "index"
 
 Cette route indique que les URL devront être de la forme http://host/fr/public/Catalogue/Recherche, 
  * fr étant la langue
@@ -108,9 +109,9 @@ Les valeurs par défaut sont définis par le terme defaults.
 Il est ensuite possible de définir des pré-requis (requirements) sur les URL. 
 Par exemple, pour n'autoriser que les profils '''public''' et '''private''', il est nécessaire de spécifier la règle suivante :
 
-...
-    resources.router.routes.global.reqs.profil = "public|private"
-...
+
+        resources.router.routes.global.reqs.profil = "public|private"
+
 
 Il est également possible d'utiliser des expressions régulières (à confirmer).
 
@@ -118,76 +119,70 @@ Il est également possible d'utiliser des expressions régulières (à confirmer
 
 Il est possible de définir des routes à partir des hostnames. A priori, quelque chose comme ça : 
 
-...
-    resources.router.routes.default.type = "Zend_Controller_Router_Route_Hostname"
-    resources.router.routes.default.route = ":subdomain.sitename.com"
-    resources.router.routes.default.reqs.subdomain = "([a-zA-Z]+)"
-    resources.router.routes.default.defaults.subdomain = "www"
-
-    ;resources.router.routes.global.type = "Zend_Controller_Router_Route_Rewrite"
-    resources.router.routes.default.chains.global.route = ":langue/:profil/:module/:controller/:action/*"
-    resources.router.routes.default.chains.global.defaults.langue = "fr"
-    resources.router.routes.default.chains.global.defaults.profil = "private"
-    resources.router.routes.default.chains.global.defaults.module = "default"
-    resources.router.routes.default.chains.global.defaults.controller = "index"
-    resources.router.routes.default.chains.global.defaults.action = "index"
-...
+        resources.router.routes.default.type = "Zend_Controller_Router_Route_Hostname"
+        resources.router.routes.default.route = ":subdomain.sitename.com"
+        resources.router.routes.default.reqs.subdomain = "([a-zA-Z]+)"
+        resources.router.routes.default.defaults.subdomain = "www"
+        
+        ;resources.router.routes.global.type = "Zend_Controller_Router_Route_Rewrite"
+        resources.router.routes.default.chains.global.route = ":langue/:profil/:module/:controller/:action/*"
+        resources.router.routes.default.chains.global.defaults.langue = "fr"
+        resources.router.routes.default.chains.global.defaults.profil = "private"
+        resources.router.routes.default.chains.global.defaults.module = "default"
+        resources.router.routes.default.chains.global.defaults.controller = "index"
+        resources.router.routes.default.chains.global.defaults.action = "index"
 
 Pour le moment, cette route ne fonctionne que si elle est définie dans le bootstrap : 
 
-...
-    public function _initRoutes()
-    {
-        $frontController = Zend_Controller_Front::getInstance();
-	$router = $frontController->getRouter();
-	$router->removeDefaultRoutes();
-	
-	$path_route = new Zend_Controller_Router_Route(
-		':langue/:profil/:module/:controller/:action/*',
-		array(
-			'langues' => 'fr',                    
+        public function _initRoutes()
+        {
+            $frontController = Zend_Controller_Front::getInstance();
+            $router = $frontController->getRouter();
+            $router->removeDefaultRoutes();
+        
+            $path_route = new Zend_Controller_Router_Route(
+                ':langue/:profil/:module/:controller/:action/*',
+                    array(
+                        'langues' => 'fr',                    
                         'profil' => 'private',
-			'module' => 'Aide',
-			'controller' => 'Aide',
-			'action' => 'index',
-		)
-	);
-        $router->addRoute('global', $path_route);
-	
-	$dynamic_subdomain = new Zend_Controller_Router_Route_Hostname(
-		':subdomain.monsite.fr',
-		array(
-                    	'subdomain' => 'www'
-                ),
-		array(
-			'subdomain' => '([a-zA-Z]+)'
-		)
-	);
-	
-	$router->addRoute('subdomain_route', $dynamic_subdomain->chain($path_route));
-	
-	$default_route = new Zend_Controller_Router_Route_Hostname(
-		'www.monsite.fr',
-		array(
-			'controller' => 'index',
-			'action'	 => 'index'
-		)
-	);
-	$router->addRoute('default_route', $default_route->chain($path_route));
-    }
-...
+                        'module' => 'Aide',
+                        'controller' => 'Aide',
+                        'action' => 'index',
+                    )
+            );
+            $router->addRoute('global', $path_route);
+        
+            $dynamic_subdomain = new Zend_Controller_Router_Route_Hostname(
+                    ':subdomain.monsite.fr',
+                    array(
+                            'subdomain' => 'www'
+                    ),
+                    array(
+                        'subdomain' => '([a-zA-Z]+)'
+                    )
+            );
+        
+            $router->addRoute('subdomain_route', $dynamic_subdomain->chain($path_route));
+        
+            $default_route = new Zend_Controller_Router_Route_Hostname(
+                'www.monsite.fr',
+                array(
+                        'controller' => 'index',
+                        'action'         => 'index'
+                )
+            );
+            $router->addRoute('default_route', $default_route->chain($path_route));
+        }
 
 Dans le code PHP pour récupérer le subdomain, il faut utiliser : 
 
-...
-    // dans un controller
-    $this->_request->getParam('subdomain');
+        // dans un controller
+        $this->_request->getParam('subdomain');
 
-    // dans un objet 
-    $front = Zend_Controller_Front::getInstance();
-    $request = $front->getRequest();
-    $request->getParam('subdomain');
-...
+        // dans un objet 
+        $front = Zend_Controller_Front::getInstance();
+        $request = $front->getRequest();
+        $request->getParam('subdomain');
 
 ## gestion des mails
 
@@ -197,25 +192,20 @@ Le chargement de Xulub_Mail passe désormais par Xulub_Application_Resouce_Xbmai
 Pour l'utiliser, il suffit simplement d'ajouter des lignes dans le fichier de configuration. 
 Plusieurs exemples : 
 
-...
--- utilise le serveur SMTP smtp.mail.com par défaut
-resources.xbmail.transport.type = "smtp"
-resources.xbmail.transport.host = "smtp.mail.com"
--- définit le nom et l'email de l'expéditeur par défaut
-resources.xbmail.defaultFrom.email = noreply@mail.com
-resources.xbmail.defaultFrom.name = "noreply@mail.com"
--- ajoute un bcc par défaut
-resources.xbmail.defaultBcc.email = "bcc@mail.com"
-...
-
+        -- utilise le serveur SMTP smtp.mail.com par défaut
+        resources.xbmail.transport.type = "smtp"
+        resources.xbmail.transport.host = "smtp.mail.com"
+        -- définit le nom et l'email de l'expéditeur par défaut
+        resources.xbmail.defaultFrom.email = noreply@mail.com
+        resources.xbmail.defaultFrom.name = "noreply@mail.com"
+        -- ajoute un bcc par défaut
+        resources.xbmail.defaultBcc.email = "bcc@mail.com"
 
 Cette configuration doit désormais être utilisée dans le cas où on ne souhaite pas que les mails soient envoyés directement.
 
-...
--- stocke l'ensemble des mails envoyés dans le répertoire APPLICATION_PATH "/share/logs"
-resources.xbmail.transport.type = "file"
-resources.xbmail.transport.path = APPLICATION_PATH "/share/logs"
-...
+        -- stocke l'ensemble des mails envoyés dans le répertoire APPLICATION_PATH "/share/logs"
+        resources.xbmail.transport.type = "file"
+        resources.xbmail.transport.path = APPLICATION_PATH "/share/logs"
 
 ## Gestion des redirections
 
@@ -235,10 +225,8 @@ Pour gérer les URL, vous pouvez utiliser 2 helpers :
 
 Depuis le contrôleur : 
 
-...
-$this->view->Url();
-$this->view->XbUrl();
-...
+        $this->view->Url();
+        $this->view->XbUrl();
 
 ### Smarty
 
@@ -254,76 +242,62 @@ Attention :
  * Smarty3 est plus sensible à la syntaxe.
  * Les formulaires QuickForm peuvent générés des notice de fonctions deprecated dans la ZFtoolbar. Solution => ajouter dans application.ini :
 
-...
-resources.xbview.smarty.deprecation_notices = false
-...
+    resources.xbview.smarty.deprecation_notices = false
 
 ## Paramètre de configuration de Smarty
 
-...
-; permet de désactiver l'affichage des erreurs d'appel de fonction deprecated (dans notre cas HTML_QUICKFORM)
-resources.xbview.smarty.deprecation_notices = false
-
-; Dans le cas de variable non déclarées dans template Smarty, masque les erreurs
-; à utiliser avec parcimonie
-resources.xbview.smarty.error_reporting = E_ALL & ~E_NOTICE
-
-; Pour activer apc, comme moteur de cache de Smarty :
-; NOTA : un fichier cacheresource.apc.php doit être présent dans un des répertoires de plugins de SMARTY
-; remplace cache_handler_func
-resources.xbview.smarty.caching_type = apc
-
-; Permet de créer des sous-répertoires dans le répertoire de stockage du cache ou de templates_c
-resources.xbview.smarty.use_sub_dirs = true
-...
+        ; permet de désactiver l'affichage des erreurs d'appel de fonction deprecated (dans notre cas HTML_QUICKFORM)
+        resources.xbview.smarty.deprecation_notices = false
+        
+        ; Dans le cas de variable non déclarées dans template Smarty, masque les erreurs
+        ; à utiliser avec parcimonie
+        resources.xbview.smarty.error_reporting = E_ALL & ~E_NOTICE
+        
+        ; Pour activer apc, comme moteur de cache de Smarty :
+        ; NOTA : un fichier cacheresource.apc.php doit être présent dans un des répertoires de plugins de SMARTY
+        ; remplace cache_handler_func
+        resources.xbview.smarty.caching_type = apc
+        
+        ; Permet de créer des sous-répertoires dans le répertoire de stockage du cache ou de templates_c
+        resources.xbview.smarty.use_sub_dirs = true
 
 ## Gestion des traductions
 
 Le chargement de la configuration des traductions se faire via le plugin de ressource Translate.
 Les paramètres de configuration sont les suivants : 
 
-...
-resources.translate.adapter = gettext
-resources.translate.data = XULUB_LOCALE_DIR
-resources.translate.options.scan = Zend_Translate::LOCALE_DIRECTORY
-resources.translate.options.force_compile  = false
-resources.translate.options.mo_compiler = "/usr/bin/msgfmt"
-...
+        resources.translate.adapter = gettext
+        resources.translate.data = XULUB_LOCALE_DIR
+        resources.translate.options.scan = Zend_Translate::LOCALE_DIRECTORY
+        resources.translate.options.force_compile  = false
+        resources.translate.options.mo_compiler = "/usr/bin/msgfmt"
 
 Les traductions utilisent désormais le helper de vue translate : 
 
-...
-# dans un controller : 
-$this->view->translate()->translate('MA_CHAINE', array('param1'));
-# dans un template 
-{$this->translate('MA_CHAINE')} 
-# avec le plugin smarty (deprecated) 
-{t param1="value"}MA_CHAINE{/t}
-... 
+        # dans un controller : 
+        $this->view->translate()->translate('MA_CHAINE', array('param1'));
+        # dans un template 
+        {$this->translate('MA_CHAINE')} 
+        # avec le plugin smarty (deprecated) 
+        {t param1="value"}MA_CHAINE{/t}
 
 La conversion des chaines wiki est gérée par un helper de vue wiki dédiée. Le 2ieme paramètre est un booléen permettant d'enlever les balises P 
 
-... 
-// exemple supprimant les balises <p>
-$this->view->XbWiki('ma chaine __avec__ du __wiki__', true); 
-
-// exemple conservant les balises <p>
-$this->view->XbWiki('ma chaine __avec__ du __wiki__'); 
-... 
-	 
+        // exemple supprimant les balises <p>
+        $this->view->XbWiki('ma chaine __avec__ du __wiki__', true); 
+        
+        // exemple conservant les balises <p>
+        $this->view->XbWiki('ma chaine __avec__ du __wiki__'); 
+         
 ou directement dans la template
 
-... 
-{$this->XbWiki('ma chaine __avec__ du __wiki__')} 
-{$this->XbWiki($ma_chaine, true)} 
-{$this->XbWiki($this->translate('MA_TRADUCTION'))} 
-... 
+        {$this->XbWiki('ma chaine __avec__ du __wiki__')} 
+        {$this->XbWiki($ma_chaine, true)} 
+        {$this->XbWiki($this->translate('MA_TRADUCTION'))} 
  
 ou via un plugin smarty (deprecated) 
 
-... 
-{wiki}ma chaine __avec__ du __wiki__{/wiki} 
-...
+        {wiki}ma chaine __avec__ du __wiki__{/wiki} 
 
 ### processus de compilation
 
@@ -338,19 +312,18 @@ Le Zend_Translate s'occupe de lire le fichier messages.mo
 
 ### format du fichier languages.xml
 
-...
-<?xml version="1.0" encoding="ISO-8859-15" ?>
-<translations>
-    </sentence>
-	<sentence key="L_APPLIFORMS_AF_PAS_APPLI">
-    	<translation language="fr_FR" value="Accès application Forms : problème dans le récupération de l'application pour ce contexte" />
-    </sentence>
-    ...
-    <sentence key="L_APPLIFORMS_AF_PB_CODE_STRUCTURE">
-    	<translation language="fr_FR" value="Accès application Forms : Ce contexte n'est pas un contexte autorisé." />
-    </sentence>
-</translations>
-...
+
+        <?xml version="1.0" encoding="ISO-8859-15" ?>
+        <translations>
+            </sentence>
+                <sentence key="L_APPLIFORMS_AF_PAS_APPLI">
+                    <translation language="fr_FR" value="Accès application Forms : problème dans le récupération de l'application pour ce contexte" />
+            </sentence>
+            ...
+            <sentence key="L_APPLIFORMS_AF_PB_CODE_STRUCTURE">
+                    <translation language="fr_FR" value="Accès application Forms : Ce contexte n'est pas un contexte autorisé." />
+            </sentence>
+        </translations>
 
 N.B : 
  * A noter qu'on utilise un encodage ISO-8859-15 car la BDD est toujours dans ce format.
@@ -359,15 +332,11 @@ N.B :
 
 Remplacer les 
 
-...
-addFormRule(array('MaClasse', 'maFonction'));
-...
+        addFormRule(array('MaClasse', 'maFonction'));
 
 par
 
-...
-addFormRule(array('MaClasseController', 'maFonction'));
-...
+        addFormRule(array('MaClasseController', 'maFonction'));
 
 
 ## Gestion des ACL
@@ -376,19 +345,17 @@ La gestion des ACL est désormais assurée par un plugin du front controller (Xu
 
 Pour le charger : 
 
-...
-$options = $this->getOptions();
-$formatressourcename = Xulub_Controller_Plugin_CheckAcl::XULUB_ACL_FORMAT_PAGE;
-if (isset($options['xulub']['acl']['formatressourcename']))
-{
-   $formatressourcename = $options['xulub']['acl']['formatressourcename'];
-}
-Zend_Controller_Front::getInstance()->registerPlugin(
+        $options = $this->getOptions();
+        $formatressourcename = Xulub_Controller_Plugin_CheckAcl::XULUB_ACL_FORMAT_PAGE;
+        if (isset($options['xulub']['acl']['formatressourcename']))
+        {
+           $formatressourcename = $options['xulub']['acl']['formatressourcename'];
+        }
+        Zend_Controller_Front::getInstance()->registerPlugin(
                 new Xulub_Controller_Plugin_CheckAcl(
                         $user,
                         $formatressourcename)
-                );
-...
+        );
 
 idéalement à placer dans le Boostrap.
 
@@ -400,53 +367,47 @@ idéalement à placer dans le Boostrap.
 Pour ajouter le code GA dans les pages, il est possible d'utiliser le helper de vue Xulub_View_Helper_XbGoogleAnalytics.
 Usage : 
 
-...
-// dans le controller
-$options = array('param' => 'value');
-$this->view->XbGoogleAnalytics('id tracker', $options);
-
-// Possibilité d'ajouter des options
-$this->view->XbGoogleAnalytics()->addTrackerOption('trackPageview', 'ma valeur');
-$this->XbGoogleAnalytics();
-...
+        // dans le controller
+        $options = array('param' => 'value');
+        $this->view->XbGoogleAnalytics('id tracker', $options);
+        
+        // Possibilité d'ajouter des options
+        $this->view->XbGoogleAnalytics()->addTrackerOption('trackPageview', 'ma valeur');
+        $this->XbGoogleAnalytics();
 
 Pour initialiser GoogleAnalytics sur l'ensemble des pages, il est possible d'utiliser une méthode de Bootstrap.
 Exemple : 
 
-...
-    /**
-     * Initialisation de GoogleAnalytics
-     */
-    public function _initStats()
-    {
-        // On récupère les options dans la section stats
-        $options = $this->getOption('stats');
-        if ( isset($options['id_ga']) && is_string($options['id_ga']))
-        {
-            $trackerId = $options['id_ga'];
-            unset($options['id_gda']);
-        }
-
-        // On récupère les options si besoin
-        if (isset($options['options']) && is_array($options['options']) )
-        {
-            $options = $options['options'];
-        }
-
-        // Si on dispose d'un trackerId, on initialise GoogleAnalytics
-        if (!empty($trackerId))
-        {
-            $this->layout->getView()->xbGoogleAnalytics($trackerId, $options);
-        }
-    }
-...
+            /**
+             * Initialisation de GoogleAnalytics
+             */
+            public function _initStats()
+            {
+                // On récupère les options dans la section stats
+                $options = $this->getOption('stats');
+                if ( isset($options['id_ga']) && is_string($options['id_ga']))
+                {
+                    $trackerId = $options['id_ga'];
+                    unset($options['id_gda']);
+                }
+        
+                // On récupère les options si besoin
+                if (isset($options['options']) && is_array($options['options']) )
+                {
+                    $options = $options['options'];
+                }
+        
+                // Si on dispose d'un trackerId, on initialise GoogleAnalytics
+                if (!empty($trackerId))
+                {
+                    $this->layout->getView()->xbGoogleAnalytics($trackerId, $options);
+                }
+            }
 
 avec dans le fichier de configuration : 
 
-...
-stats.id_ga = UA-123456-01
-stats.options.setDomainName = .mydomain.com
-...
+        stats.id_ga = UA-123456-01
+        stats.options.setDomainName = .mydomain.com
 
 ## gestion des helpers
 
@@ -468,21 +429,15 @@ Les helpers de vue sont stockées dans :
 
 Pour appeler les helpers de vue dans un controlleur : 
 
-...
-$this->view->XbMonSuperHelper();
-...
+        $this->view->XbMonSuperHelper();
 
 Depuis Smarty : 
 
-...
-$this->XbMonSuperHelper();
-...
+        $this->XbMonSuperHelper();
 
 Pour passer, des paramètres : 
 
-...
-$this->XbUrl(['controller' => 'mon controller', 'module' => 'mon module', 'action' => 'mon action' ]
-...
+        $this->XbUrl(['controller' => 'mon controller', 'module' => 'mon module', 'action' => 'mon action' ]
 
 #### helper d'action
 
@@ -492,11 +447,9 @@ Les helpers de vue sont stockées dans :
 
 Pour appeler les helpers de vue dans un controlleur : 
 
-...
-$this->_helper->XbMonSuperHelper();
-// ou
-$this->_helper->getHelper('XbMonSuperHelper');
-...
+        $this->_helper->XbMonSuperHelper();
+        // ou
+        $this->_helper->getHelper('XbMonSuperHelper');
 
 ### créer un helper de vue
 
@@ -505,25 +458,19 @@ Les helpes de vue doivent être positionnés dans Xulub/View/Helper ou NameSpace
 Il est nécessaire d'indiquer au framework les répertoires où il peut trouver les helpers. Le chargement se fait dans Xulub_Application_Resource_XbView.
 Pour ajouter un répertoire, il faut indiquer dans le fichier application.ini : 
 
-...
-resources.xbview.helperDirs.Namespace_View_Helper_ = "Namespace/View/Helper"
-...
+        resources.xbview.helperDirs.Namespace_View_Helper_ = "Namespace/View/Helper"
 
 Exemple : 
 
-...
-resources.xbview.helperDirs.EspacePro_View_Helper_ = "EspacePro/View/Helper"
-...
+        resources.xbview.helperDirs.EspacePro_View_Helper_ = "EspacePro/View/Helper"
 
 (ne pas oublier le underscore (_) )
 
 
 Par défaut, les répertoires de Helper sont : 
 
-...
- 'Xulub/View/Helper' => 'Xulub_View_Helper_',
- 'Zend/View/Helper' => 'Zend_View_Helper_'
-...
+         'Xulub/View/Helper' => 'Xulub_View_Helper_',
+         'Zend/View/Helper' => 'Zend_View_Helper_'
 
 
 ## Classes ou fonctions non supportées
@@ -539,16 +486,12 @@ Par défaut, les répertoires de Helper sont :
 
 Pour récupérer le nom du controller courant :
 
-...
-$request = Zend_Controller_Front::getInstance()->getRequest();
-$page = $request->getControllerName();
-...
+        $request = Zend_Controller_Front::getInstance()->getRequest();
+        $page = $request->getControllerName();
 
 et non pas : 
 
-...
-$page = $this->_request->getControllerName();
-...
+        $page = $this->_request->getControllerName();
 
 ## Gestion des User
 
@@ -556,22 +499,20 @@ Pour gérer les utilisateurs, il est possible d'ajouter un Namespace_Application
 
 La récupération du user est ensuite dans un controlleur possible via un mécanisme de ce type: 
 
-...
-    /**
-     * Renvoie l'objet Xulub_User
-     * 
-     * @return Xulub_User
-     */
-    public function getUser()
-    {
-        $bootstrap = $this->getInvokeArg('bootstrap');
-        if (!$bootstrap->hasPluginResource('xbuser')) {
-            return false;
-        }
-        $user = $bootstrap->getResource('xbuser');
-        return $user;
-    }
-...
+            /**
+             * Renvoie l'objet Xulub_User
+             * 
+             * @return Xulub_User
+             */
+            public function getUser()
+            {
+                $bootstrap = $this->getInvokeArg('bootstrap');
+                if (!$bootstrap->hasPluginResource('xbuser')) {
+                    return false;
+                }
+                $user = $bootstrap->getResource('xbuser');
+                return $user;
+            }
 
 ## Amélioration des performances
 
@@ -583,9 +524,7 @@ Il est possible d'améliorer le chargement des plugins ZF (cf. http://framework.
 
 Pour l'activer, il est nécessaire d'ajouter dans le fichier de configuration : 
 
-...
-resources.xbconfig.enablePluginLoaderCache = 1
-...
+        resources.xbconfig.enablePluginLoaderCache = 1
 
 Ce mécanisme est ensuite traité dans Xulub_Application_Resource_Xbconfig.
 
@@ -594,28 +533,26 @@ Ce mécanisme est ensuite traité dans Xulub_Application_Resource_Xbconfig.
 Par défaut, Zend_Application charge la configuration du fichier application.ini via Zend_Config_Ini. Ce mécanisme est assez lourd en terme de performance. Il est possible d'améliorer les performances de ce mécanisme en mettant en cache le chargement de Zend_Config.
 C'est le rôle de Xulub_Application qui va stocker par défaut la configuration du fichier application.ini en cache (dans le répertoire application/share/cache). Il est également possible de passer plusieurs fichiers application.ini à Zend_Application ou Xulub_Application.
 
-...
-// dans le fichier index.php
-// -- syntaxe par défaut
-$application = new Zend_Application(
+        // dans le fichier index.php
+        // -- syntaxe par défaut
+        $application = new Zend_Application(
+                    APPLICATION_ENV,        
+                    APPLICATION_PATH . '/configs/application.ini'
+        );
+        
+        // -- syntaxe utilisant Xulub_Application permettant la mise en cache de application.ini
+        $application = new Xulub_Application(
                     APPLICATION_ENV,
                     APPLICATION_PATH . '/configs/application.ini'
-);
-
-// -- syntaxe utilisant Xulub_Application permettant la mise en cache de application.ini
-$application = new Xulub_Application(
-                    APPLICATION_ENV,
-                    APPLICATION_PATH . '/configs/application.ini'
-
-// -- syntaxe utilisant Xulub_Application avec plusieurs fichiers application.ini
-$application = new Xulub_Application(
+        
+        // -- syntaxe utilisant Xulub_Application avec plusieurs fichiers application.ini
+        $application = new Xulub_Application(
                     APPLICATION_ENV,
                     array('config' => array(
                                          APPLICATION_PATH . '/configs/application.ini',
                                         'mon-autre-fichier-application.ini'
                                       )
                     ));
-...
 
 ### Suppression des require_once
 
@@ -627,27 +564,23 @@ Voir pour ajouter une tâche phing.
 
 Il y a plein d'objets Zend qui peuvent être mis en cache : 
 
-...
-$cache = ...un objet de type Zend_Cache...;
-
-// Cache de Zend_Date
-Zend_Date::setOptions(array('cache' => $cache));
-
-// Cache de Zend_Feed_Reader
-Zend_Feed_Reader::setCache($cache);
-...
+        $cache = ...un objet de type Zend_Cache...;
+        
+        // Cache de Zend_Date
+        Zend_Date::setOptions(array('cache' => $cache));
+        
+        // Cache de Zend_Feed_Reader
+        Zend_Feed_Reader::setCache($cache);
 
 ### Amélioriation des performance de Zend_Feed
 
-...
-// on met un timeout sur les connexions HTTP à 1 seconde
-// Permet de réduire la latence de la connexion si le service n'est pas joignable
-$configHttpClient = array(
-  'timeout'      => 1,
-  );
-$httpClient = new Zend_Http_Client(null, $configHttpClient);
-Zend_Feed::setHttpClient($httpClient);
-...
+        // on met un timeout sur les connexions HTTP à 1 seconde
+        // Permet de réduire la latence de la connexion si le service n'est pas joignable
+        $configHttpClient = array(
+          'timeout'      => 1,
+          );
+        $httpClient = new Zend_Http_Client(null, $configHttpClient);
+        Zend_Feed::setHttpClient($httpClient);
 
 ### Amélioration des performances HTTP
 
@@ -665,29 +598,25 @@ Concrètement, il suffit de remplacer :
 
 Par défaut, la concaténation et la minification est activée. Si vous souhaitez la désactiver, vous pouvez utiliser la configuration suivante : 
 
-...
-; minification des fichiers css
-resources.xbview.css.minify = true
-; concaténation des fichiers css
-resources.xbview.css.concatenate = true
-; minification des fichiers js
-resources.xbview.js.minify = true
-; concaténation des fichiers js
-resources.xbview.js.concatenate = true
-...
+        ; minification des fichiers css
+        resources.xbview.css.minify = true
+        ; concaténation des fichiers css
+        resources.xbview.css.concatenate = true
+        ; minification des fichiers js
+        resources.xbview.js.minify = true
+        ; concaténation des fichiers js
+        resources.xbview.js.concatenate = true
 
 A noter que si la variable version a été définir dans le fichier application.ini, elle sera automatiquement ajoutée aux fichiers CSS et JS : 
 
-...
-; dans application.ini
-version = 1.5.0
+        ; dans application.ini
+        version = 1.5.0
 
-; cela générera : 
-<link href="/auth/css/global.css?version=1.5.0" media="all" rel="stylesheet" type="text/css" />
-
-ou
-<script type="text/javascript" src="/auth/js/jquery-1.4.2.js?version=1.5.0"></script>
-...
+        ; cela générera : 
+        <link href="/auth/css/global.css?version=1.5.0" media="all" rel="stylesheet" type="text/css" />
+        
+        ou
+        <script type="text/javascript" src="/auth/js/jquery-1.4.2.js?version=1.5.0"></script>
 
 ## Envoi de fichier au navigateur
 
@@ -697,9 +626,7 @@ Les méthodes xbHttp::headerForceDownload et xbHttp::headerForceDownloadByFile s
 
 A exécuter pour nettoyer rapidement une fois le reprise effectuée
 
-...
-find ./application/controllers/ -name config.xml -exec svn del '{}' \;
-...
+        find ./application/controllers/ -name config.xml -exec svn del '{}' \;
 
 
 ## Passage et Récupération de paramètres
@@ -710,15 +637,11 @@ Il faut les remplacer par $this->_getParam() dans un controller ou $this->reques
 
 Vérifier l'utilisation de getArgs
 
-...
-find . -name *.php -exec grep -l "getArgs" '{}' \;
-...
+        find . -name *.php -exec grep -l "getArgs" '{}' \;
 
 Remplacer toutes ces méthodes
 
-...
-find . -name *.php -exec /opt/csw/bin/gsed  's/getArgs/_getParam/g' -i '{}' \; 2>>/dev/null
-...
+        find . -name *.php -exec /opt/csw/bin/gsed  's/getArgs/_getParam/g' -i '{}' \; 2>>/dev/null
 
 ## Utilisation de placeholder
 
@@ -726,15 +649,11 @@ Zend Framework permet de créer des placeholder qui correspond au mécanisme des
 
 dans le contrôleur (autrefois le addComposant avec le hook) :
 
-...
-$this->view->placeholder('contenu_onglet')->set($this->view->action('index', $controller, $module, $params));
-...
+        $this->view->placeholder('contenu_onglet')->set($this->view->action('index', $controller, $module, $params));
 
 dans la template, il suffit de rappeler le placeholder (ici contenu_onglet) :
 
-...
-{$this->placeholder('contenu_onglet')} 
-...
+        {$this->placeholder('contenu_onglet')} 
 
 ## Gestion de cache
 
@@ -744,9 +663,7 @@ Xulub utilise, par défaut, Zend_Cache_Manager. Grâce à Zend_Cache_Manager, il
 
 Il est possible de logger les éléments stockés en cache via l'ajout d'une directive dans le fichier application.ini : 
 
-...
-resources.xbcachemanager.database.frontend.options.logging = true
-...
+        resources.xbcachemanager.database.frontend.options.logging = true
 
 Lorsque logging est à true, le fichier de log est alimenté par les traces d'utilisation des composants Zend_Cache.
 
@@ -760,12 +677,10 @@ La procédure est la suivante :
 
 1- On modifie la configuration de pear : 
 
-...
-$ pear config-set bin_dir /chemin/vers/xulub/library/vendor/pear.20100302/bin
-$ pear config-set doc_dir /chemin/vers/xulub/library/vendor/pear.20100302/doc
-$ pear config-set php_dir /chemin/vers/xulub/library/vendor/pear.20100302/lib/php
-$ pear config-set data_dir /chemin/vers/xulub/library/vendor/pear.20100302/data
-$ pear config-set cfg_dir /chemin/vers/xulub/library/vendor/pear.20100302/cfg
-$ pear config-set data_dir /chemin/vers/xulub/library/vendor/pear.20100302/data
-$ pear config-set test_dir /chemin/vers/xulub/library/vendor/pear.20100302/tests
-...
+        $ pear config-set bin_dir /chemin/vers/xulub/library/vendor/pear.20100302/bin
+        $ pear config-set doc_dir /chemin/vers/xulub/library/vendor/pear.20100302/doc
+        $ pear config-set php_dir /chemin/vers/xulub/library/vendor/pear.20100302/lib/php
+        $ pear config-set data_dir /chemin/vers/xulub/library/vendor/pear.20100302/data
+        $ pear config-set cfg_dir /chemin/vers/xulub/library/vendor/pear.20100302/cfg
+        $ pear config-set data_dir /chemin/vers/xulub/library/vendor/pear.20100302/data
+        $ pear config-set test_dir /chemin/vers/xulub/library/vendor/pear.20100302/tests
