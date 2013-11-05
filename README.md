@@ -58,11 +58,11 @@ La version du framework à utiliser est indiquée dans le fichier index.php via 
 A ajouter dans le fichier application.ini pour gérer le MVC : 
 
 ...
-; les contrôleurs se trouvent directement dans le répertoire controllers (donc chaine vide)
-resources.frontController.modulecontrollerdirectoryname = ""
-; répertoire où sont stockés les modules
-resources.frontController.moduledirectory = APPLICATION_PATH "/controllers"
-resources.frontController.params.displayExceptions = 0
+    ; les contrôleurs se trouvent directement dans le répertoire controllers (donc chaine vide)
+    resources.frontController.modulecontrollerdirectoryname = ""
+    ; répertoire où sont stockés les modules
+    resources.frontController.moduledirectory = APPLICATION_PATH "/controllers"
+    resources.frontController.params.displayExceptions = 0
 ...
 
 
@@ -72,12 +72,12 @@ La gestion du choix du layout selon le profil de l'URL est géré par le plugin 
 Les variables de configuration sont les suivantes : 
 
 ...
-; layout utilisé par défaut
-resources.layout.layout = public
-; variable qui remplacera le contenu principal
-resources.layout.contentKey = contenu
-; répertoire où se trouve les layouts
-resources.layout.layoutPath = APPLICATION_PATH "/controllers/layout/template"
+    ; layout utilisé par défaut
+    resources.layout.layout = public
+    ; variable qui remplacera le contenu principal
+    resources.layout.contentKey = contenu
+    ; répertoire où se trouve les layouts
+    resources.layout.layoutPath = APPLICATION_PATH "/controllers/layout/template"
 ...
 
 A noter : le layout par défaut utilisé est défini par la variable resources.layout.layout (Si vous souhaitez utiliser par défaut le layout private, vous devez spécifier resources.layout.layout = private)
@@ -87,13 +87,13 @@ A noter : le layout par défaut utilisé est défini par la variable resources.l
 Une route est définie dans le fichier de configuration par : 
 
 ...
-resources.router.routes.global.route = ":langue/:profil/:module/:controller/*"
-resources.router.routes.global.defaults.langue = "fr"
-resources.router.routes.global.defaults.profil = "public"
-resources.router.routes.global.reqs.profil = "public"
-resources.router.routes.global.defaults.module = "Accueil"
-resources.router.routes.global.defaults.controller = "Accueil"
-resources.router.routes.global.defaults.action = "index"
+    resources.router.routes.global.route = ":langue/:profil/:module/:controller/*"
+    resources.router.routes.global.defaults.langue = "fr"
+    resources.router.routes.global.defaults.profil = "public"
+    resources.router.routes.global.reqs.profil = "public"
+    resources.router.routes.global.defaults.module = "Accueil"
+    resources.router.routes.global.defaults.controller = "Accueil"
+    resources.router.routes.global.defaults.action = "index"
 ...
 
 Cette route indique que les URL devront être de la forme http://host/fr/public/Catalogue/Recherche, 
@@ -110,7 +110,7 @@ Il est ensuite possible de définir des pré-requis (requirements) sur les URL.
 Par exemple, pour n'autoriser que les profils '''public''' et '''private''', il est nécessaire de spécifier la règle suivante :
 
 ...
-resources.router.routes.global.reqs.profil = "public|private"
+    resources.router.routes.global.reqs.profil = "public|private"
 ...
 
 Il est également possible d'utiliser des expressions régulières (à confirmer).
@@ -120,24 +120,24 @@ Il est également possible d'utiliser des expressions régulières (à confirmer
 Il est possible de définir des routes à partir des hostnames. A priori, quelque chose comme ça : 
 
 ...
-resources.router.routes.default.type = "Zend_Controller_Router_Route_Hostname"
-resources.router.routes.default.route = ":subdomain.sitename.com"
-resources.router.routes.default.reqs.subdomain = "([a-zA-Z]+)"
-resources.router.routes.default.defaults.subdomain = "www"
+    resources.router.routes.default.type = "Zend_Controller_Router_Route_Hostname"
+    resources.router.routes.default.route = ":subdomain.sitename.com"
+    resources.router.routes.default.reqs.subdomain = "([a-zA-Z]+)"
+    resources.router.routes.default.defaults.subdomain = "www"
 
-;resources.router.routes.global.type = "Zend_Controller_Router_Route_Rewrite"
-resources.router.routes.default.chains.global.route = ":langue/:profil/:module/:controller/:action/*"
-resources.router.routes.default.chains.global.defaults.langue = "fr"
-resources.router.routes.default.chains.global.defaults.profil = "private"
-resources.router.routes.default.chains.global.defaults.module = "default"
-resources.router.routes.default.chains.global.defaults.controller = "index"
-resources.router.routes.default.chains.global.defaults.action = "index"
+    ;resources.router.routes.global.type = "Zend_Controller_Router_Route_Rewrite"
+    resources.router.routes.default.chains.global.route = ":langue/:profil/:module/:controller/:action/*"
+    resources.router.routes.default.chains.global.defaults.langue = "fr"
+    resources.router.routes.default.chains.global.defaults.profil = "private"
+    resources.router.routes.default.chains.global.defaults.module = "default"
+    resources.router.routes.default.chains.global.defaults.controller = "index"
+    resources.router.routes.default.chains.global.defaults.action = "index"
 ...
 
 Pour le moment, cette route ne fonctionne que si elle est définie dans le bootstrap : 
 
 ...
-public function _initRoutes()
+    public function _initRoutes()
     {
         $frontController = Zend_Controller_Front::getInstance();
 	$router = $frontController->getRouter();
@@ -181,13 +181,13 @@ public function _initRoutes()
 Dans le code PHP pour récupérer le subdomain, il faut utiliser : 
 
 ...
-// dans un controller
-$this->_request->getParam('subdomain');
+    // dans un controller
+    $this->_request->getParam('subdomain');
 
-// dans un objet 
-$front = Zend_Controller_Front::getInstance();
-$request = $front->getRequest();
-$request->getParam('subdomain');
+    // dans un objet 
+    $front = Zend_Controller_Front::getInstance();
+    $request = $front->getRequest();
+    $request->getParam('subdomain');
 ...
 
 ## gestion des mails
