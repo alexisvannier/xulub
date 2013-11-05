@@ -20,8 +20,7 @@ xulub-X.Y.Z avec X.Y.Z la version du framework (exemple : xulub-0.8.0). Cette no
 La version du framework à utiliser est indiquée dans le fichier index.php via la constante FRAMEWORK_VERSION.
 
 ### arborescence des projets
-
-...
+`
     +-- monprojet
 	+-- application
 	¦   +-- Bootstrap.php      : fichier de bootstrap de l'application (voir Zend_Application)
@@ -51,7 +50,7 @@ La version du framework à utiliser est indiquée dans le fichier index.php via 
 	+-- library                : répertoire contenant les librairies Xulub
 	¦
 	¦
-...
+`
 
 ## gestion du MVC
 
